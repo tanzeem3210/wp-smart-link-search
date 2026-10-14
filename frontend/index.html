@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Smart Link Search</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="logo">W</div>
+      <div>
+        <h1>Smart Link Search</h1>
+        <p>Find links hidden in your WhatsApp chats.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>1. Import a chat</h2>
+      <form id="uploadForm">
+        <label for="chatFile">WhatsApp exported chat (.txt)</label>
+        <input id="chatFile" type="file" accept=".txt" required>
+
+        <label for="groupName">Chat or group name (optional)</label>
+        <input id="groupName" type="text" placeholder="e.g. Study Group">
+
+        <button type="submit">Upload chat</button>
+        <p id="uploadStatus" class="status" role="status"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>2. Search your chats</h2>
+      <form id="searchForm">
+        <label for="keyword">Keyword or phrase</label>
+        <input id="keyword" type="text"
+               placeholder="e.g. Maths tutorial" required>
+
+        <label for="platform">Platform</label>
+        <select id="platform">
+          <option value="">All platforms</option>
+          <option value="YouTube">YouTube</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Other">Other links</option>
+        </select>
+
+        <button type="submit">Search links</button>
+      </form>
+      <p id="searchStatus" class="status" role="status"></p>
+      <div id="results"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

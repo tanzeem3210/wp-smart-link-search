@@ -16,6 +16,10 @@ MESSAGE_PATTERNS = [
         r"(?P<time>\d{1,2}:\d{2})\] "
         r"(?P<body>.*)$"
     ),
+    re.compile(
+    r"^(?P<date>\d{1,2}/\d{1,2}/\d{2,4}), "
+    r"(?P<time>\d{1,2}:\d{2}) - (?P<body>.*)$"
+),
 ]
 
 URL_PATTERN = re.compile(r"https?://[^\s<>\"']+", re.IGNORECASE)
@@ -27,6 +31,8 @@ def parse_timestamp(date_text: str, time_text: str) -> str:
         "%m/%d/%Y %I:%M %p",
         "%m/%d/%y %H:%M",
         "%m/%d/%Y %H:%M",
+        "%d/%m/%y %H:%M",
+        "%d/%m/%Y %H:%M",
     ]
 
     value = f"{date_text} {time_text.strip()}"
