@@ -118,8 +118,6 @@ searchForm.addEventListener("submit", async (event) => {
         const anchor = document.createElement("a");
         anchor.href = link.url;
         anchor.textContent = link.url;
-        anchor.target = "_blank";
-        anchor.rel = "noopener noreferrer";
         url.appendChild(anchor);
         row.appendChild(url);
 
