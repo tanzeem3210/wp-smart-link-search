@@ -1,5 +1,5 @@
 
-const API = "http://127.0.0.1:8000";
+const API = "";
 
 const uploadForm = document.getElementById("uploadForm");
 const searchForm = document.getElementById("searchForm");
