@@ -224,6 +224,9 @@ def search_chats(
             ),
         ).fetchall()
 
+        
+        seen_results = set()
+
         for match in matches:
             nearby = connection.execute(
                 """
@@ -249,13 +252,30 @@ def search_chats(
                 ),
             ).fetchall()
 
+            links = [dict(link) for link in nearby]
+
+            # Build a key from the visible result and its links.
+            result_key = (
+                match["group_name"],
+                match["timestamp"],
+                match["sender"],
+                match["text"],
+                tuple(link["url"] for link in links),
+            )
+
+            if result_key in seen_results:
+                continue
+
+            seen_results.add(result_key)
+
             results.append({
                 "group_name": match["group_name"],
                 "timestamp": match["timestamp"],
                 "sender": match["sender"],
                 "matched_message": match["text"],
-                "links": [dict(link) for link in nearby],
+                "links": links,
             })
+
 
     return {
         "query": query,
